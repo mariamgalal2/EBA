@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "EBA_Website_backend": {
+      "main": "src/EBA_Website_backend/main.mo",
+      "type": "motoko"
+    },
+    "EBA_Website_frontend": {
+      "dependencies": [
+        "EBA_Website_backend"
+      ],
+      "source": [
+        "src/EBA_Website_frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "EBA_Website_frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
