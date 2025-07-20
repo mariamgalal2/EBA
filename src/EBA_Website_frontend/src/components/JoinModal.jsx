@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { EBA_Website_backend } from '../../../declarations/EBA_Website_backend';
+import './JoinModal.css';
 
 const JoinModal = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -24,7 +25,6 @@ const JoinModal = ({ onClose }) => {
         formData.profession
       );
       setMessage(response);
-      // Optional: Auto-close modal if submission successful
       if (response?.toLowerCase().includes('success')) {
         setTimeout(() => onClose(), 2000);
       }
@@ -44,22 +44,22 @@ const JoinModal = ({ onClose }) => {
 
   return (
     <div
-      style={styles.overlay}
+      className="modalOverlay"
       onClick={handleOverlayClick}
       role="dialog"
       aria-modal="true"
     >
-      <div style={styles.modal}>
-        <button style={styles.closeBtn} onClick={onClose}>×</button>
-        <h2 style={styles.heading}>🚀 Join the EBA</h2>
-        <form onSubmit={handleSubmit} style={styles.form}>
+      <div className="modalContainer">
+        <button className="modalCloseBtn" onClick={onClose}>×</button>
+        <h2 className="modalHeading">🚀 Join the EBA</h2>
+        <form onSubmit={handleSubmit} className="modalForm">
           <input
             name="name"
             placeholder="Full Name"
             value={formData.name}
             onChange={handleChange}
             required
-            style={styles.input}
+            className="modalInput"
           />
           <input
             name="email"
@@ -68,7 +68,7 @@ const JoinModal = ({ onClose }) => {
             value={formData.email}
             onChange={handleChange}
             required
-            style={styles.input}
+            className="modalInput"
           />
           <input
             name="phone"
@@ -76,7 +76,7 @@ const JoinModal = ({ onClose }) => {
             value={formData.phone}
             onChange={handleChange}
             required
-            style={styles.input}
+            className="modalInput"
           />
           <input
             name="profession"
@@ -84,89 +84,20 @@ const JoinModal = ({ onClose }) => {
             value={formData.profession}
             onChange={handleChange}
             required
-            style={styles.input}
+            className="modalInput"
           />
           <button
             type="submit"
             disabled={loading}
-            style={{
-              ...styles.button,
-              ...(hover ? styles.buttonHover : {}),
-              ...(loading ? { opacity: 0.6, cursor: 'not-allowed' } : {})
-            }}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
+            className="modalButton"
           >
             {loading ? 'Submitting...' : 'Submit'}
           </button>
         </form>
-        {message && <p style={styles.message}>{message}</p>}
+        {message && <p className="modalMessage">{message}</p>}
       </div>
     </div>
   );
-};
-
-const styles = {
-  overlay: {
-    position: 'fixed', top: 0, left: 0, width: '100%',
-    height: '100%', backgroundColor: 'rgba(0,0,0,0.7)',
-    display: 'flex', justifyContent: 'center', alignItems: 'center',
-    zIndex: 2000,
-  },
-  modal: {
-    backgroundColor: '#062840',
-    padding: '2.5rem 2rem',
-    borderRadius: '8px',
-    width: '90%',
-    maxWidth: '420px',
-    color: 'white',
-    position: 'relative',
-    textAlign: 'center',
-  },
-  closeBtn: {
-    position: 'absolute',
-    top: '10px',
-    right: '15px',
-    background: 'transparent',
-    border: 'none',
-    fontSize: '24px',
-    color: 'white',
-    cursor: 'pointer',
-  },
-  heading: {
-    marginBottom: '1.5rem',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '1rem',
-  },
-  input: {
-    padding: '0.75rem',
-    borderRadius: '4px',
-    border: '1px solid #ccc',
-    fontSize: '1rem',
-    outline: 'none',
-  },
-  button: {
-    padding: '0.75rem 1.5rem',
-    border: '2px solid white',
-    backgroundColor: 'transparent',
-    color: 'white',
-    fontWeight: 'bold',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    transition: 'all 0.3s ease',
-  },
-  buttonHover: {
-    backgroundColor: 'white',
-    color: '#062840',
-  },
-  message: {
-    marginTop: '1rem',
-    color: 'lightgreen',
-    fontWeight: 'bold',
-  },
 };
 
 export default JoinModal;

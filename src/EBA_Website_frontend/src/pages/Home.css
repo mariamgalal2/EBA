@@ -26,6 +26,11 @@
   font-size: 1.2rem;
   margin-bottom: 2rem;
 }
+.highlight {
+  color: #ff9900;
+  font-weight: bold;
+  animation: pulseText 3s infinite;
+}
 
 /* Button Group */
 .buttonGroup {
@@ -62,11 +67,11 @@
 }
 
 /* Join Form Section */
-.joinSection {
+/* .joinSection {
   background-color: #fff;
   color: #000;
   padding: 3rem 2rem;
-}
+} */
 
 .section {
   padding: 3rem 2rem;
@@ -154,6 +159,20 @@
 .divider-thick {
   border-top: 5px solid #444;
 }
+/* Add glow hover effect for all buttons */
+.secondaryButton:hover,
+.bigJoinButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #ff9900;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* If you'd like extra flair like the original glow animation */
+.secondaryButton:hover,
+.bigJoinButton:hover {
+  animation: pulse 1.5s infinite;
+}
+
 
 /* Animations */
 @keyframes fadeInUp {
@@ -181,4 +200,9 @@
   100% {
     box-shadow: 0 0 0 0 rgba(255, 153, 0, 0);
   }
+}
+@keyframes pulseText {
+  0% { text-shadow: 0 0 0px #ff9900; }
+  50% { text-shadow: 0 0 10px #ff9900; }
+  100% { text-shadow: 0 0 0px #ff9900; }
 }

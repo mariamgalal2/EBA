@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { EBA_Website_backend } from '../../../declarations/EBA_Website_backend';
 import './Home.css';
+import ImpactCards from '../components/ImpactCards';
+import JoinModal from '../components/JoinModal';
+import VideoBanner from '../components/VideoBanner';
+
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -12,24 +16,7 @@ export default function Home() {
 
   const [message, setMessage] = useState('');
   const [isHovered, setIsHovered] = useState(false);
-
-  // useEffect(() => {
-  //   const style = document.createElement('style');
-  //   style.innerHTML = `
-  //     @keyframes fadeInUp {
-  //       from { opacity: 0; transform: translateY(20px); }
-  //       to { opacity: 1; transform: translateY(0); }
-  //     }
-  //     .fade-in { animation: fadeInUp 1s ease-out; }
-
-  //     @keyframes pulse {
-  //       0% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0.7); }
-  //       70% { box-shadow: 0 0 0 10px rgba(255, 153, 0, 0); }
-  //       100% { box-shadow: 0 0 0 0 rgba(255, 153, 0, 0); }
-  //     }
-  //   `;
-  //   document.head.appendChild(style);
-  // }, []);
+  const [showJoinModal, setShowJoinModal] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -51,10 +38,14 @@ export default function Home() {
     }
   };
 
+  const openModal = () => setShowJoinModal(true);
+  const closeModal = () => setShowJoinModal(false);
+
   return (
     <div className="page">
+      <VideoBanner />
       <section className="heroSection fade-in">
-        <h1 className="heroTitle">Where Egypt’s Past Meets the Blockchain Future</h1>
+        {/* <h1 className="heroTitle">Where Egypt’s Past Meets the Blockchain Future</h1> */}
         <p className="heroSubtitle">Join the Egyptian Blockchain Association</p>
         <p className="heroSubtitle">
           Egypt’s gateway to Web3 innovation, decentralized governance, and tokenized economies.
@@ -64,9 +55,7 @@ export default function Home() {
             className={isHovered ? 'ctaButton glow' : 'ctaButton'}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            onClick={() =>
-              document.getElementById('join-form').scrollIntoView({ behavior: 'smooth' })
-            }
+            onClick={openModal}
           >
             Join the Movement
           </button>
@@ -80,11 +69,12 @@ export default function Home() {
         <p>
           The Egyptian Blockchain Association (EBA) is a national initiative to accelerate
           blockchain adoption, regulatory alignment, and innovation. We unite developers, startups,
-          enterprises, and institutions under a single mission: to make Egypt a global leader in
-          blockchain technology.
+          enterprises, and institutions under a single mission:
         </p>
+        <p><span className="highlight">to make Egypt a global leader in blockchain technology.</span></p>
+
         <div className="buttonGroup">
-          <button className="secondaryButton">Become a Member</button>
+          <button className="secondaryButton" onClick={openModal}>Become a Member</button>
           <button className="secondaryButton">Download the EBA Brief</button>
         </div>
         <div className="italicNote">📜 Pharaoh Scrolls → 🔗 Smart Contracts</div>
@@ -94,12 +84,13 @@ export default function Home() {
 
       <section className="section fade-in">
         <h2>Our Ecosystem Members</h2>
-        <div className="logoGroup">
-          <div title="MercX – Tokenized Investment Platform for Real-World Assets">🪙 MercX</div>
+        <div className="logoGroup"> 
+        <div title="MercX – Tokenized Investment Platform for Real-World Assets" className="ecosystemItem">
+          <img src="/assets/mercx_logo.jpeg" alt="MercX Logo" className="ecosystemLogo" />
+          MercX
+        </div>
           <div title="Bridge – Web3 Onboarding Platform for the Arab World">🌉 Bridge</div>
-          <div title="ICP Hub Egypt – Driving Internet Computer (ICP) adoption in North Africa">
-            🌐 ICP Hub
-          </div>
+          <div title="ICP Hub Egypt – Driving Internet Computer (ICP) adoption in North Africa">🌐 ICP Hub</div>
           <div title="Mercatura Forum – Egypt’s leading blockchain venture studio">🏛️ Mercatura</div>
         </div>
       </section>
@@ -152,66 +143,15 @@ export default function Home() {
         <div className="italicNote">Sponsor Logos with Hover Stats</div>
       </section>
 
-      <hr className="divider divider-thick" />
-
-      <section id="join-form" className="joinSection fade-in">
-        <h2 className="sectionHeader">Become a Member</h2>
-        <form onSubmit={handleSubmit} className="formGrid">
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            required
-            value={formData.name}
-            onChange={handleChange}
-            className="input"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            required
-            value={formData.email}
-            onChange={handleChange}
-            className="input"
-          />
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Phone Number"
-            required
-            value={formData.phone}
-            onChange={handleChange}
-            className="input"
-          />
-          <input
-            type="text"
-            name="profession"
-            placeholder="Profession / Role"
-            required
-            value={formData.profession}
-            onChange={handleChange}
-            className="input"
-          />
-          <button type="submit" className="submitButton">Submit</button>
-        </form>
-        {message && <p className="successMessage">{message}</p>}
-      </section>
-
       <hr className="divider" />
 
-      <section className="section fade-in">
-        <h2>This is Your Moment.</h2>
-        <ul>
-          <li><strong>Startups:</strong> Launch with regulatory clarity and funding support.</li>
-          <li><strong>Developers:</strong> Learn, build, and grow with Egypt’s best.</li>
-          <li><strong>Institutions:</strong> Craft tomorrow’s policies, today.</li>
-          <li><strong>Sponsors:</strong> Lead the Web3 revolution with purpose and impact.</li>
-        </ul>
-        <div className="cta">
-          <button className="bigJoinButton">Become a Member →</button>
-        </div>
-      </section>
+      <ImpactCards onJoinClick={openModal} />
+
+      {showJoinModal && (
+        <JoinModal
+          onClose={closeModal}
+        />
+      )}
     </div>
   );
 }

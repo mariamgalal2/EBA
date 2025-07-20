@@ -1,0 +1,57 @@
+.videoSplitSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 73vh;
+  width: 100%;
+  gap: 3rem;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  margin-top: 60px; /* adjust if sticky navbar exists */
+}
+
+.textColumn {
+  flex: 1;
+  color: white;
+  text-align: left;
+}
+
+.heroTitle {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  line-height: 1.2;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+.heroSubtitle {
+  font-size: 1.4rem;
+  color: #ccc;
+}
+
+.videoColumn {
+  flex: 1;
+  max-width: 700px;
+}
+
+.framedVideoContainer {
+  width: 100%;
+  max-width: 700px;
+  padding: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.framedVideoContainer:hover {
+  transform: scale(1.02);
+}
+
+.framedVideo {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}

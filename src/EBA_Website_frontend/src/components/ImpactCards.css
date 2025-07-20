@@ -1,0 +1,73 @@
+.impactSection {
+  padding: 3rem 2rem;
+  text-align: center;
+  background-color: transparent; 
+  color: #fff;
+}
+
+.impactHeader {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+  padding: 1rem 0;
+}
+
+.impactCard {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid #333;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.impactCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #ff9900;
+}
+
+.cardIcon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+
+/* Reusing existing button style */
+.bigJoinButton {
+  margin-top: 2rem;
+  padding: 1rem 3rem;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  background: #ff9900;
+  border: none;
+  color: #fff;
+  animation: pulse 3s infinite;
+  cursor: pointer;
+}
+
+.cta {
+  text-align: center;
+}
+
+.ecosystemItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+  color: white;
+}
+
+.ecosystemLogo {
+  height: 30px;
+  width: auto;
+  object-fit: contain;
+  border-radius: 4px; /* optional if you want soft corners */
+}
