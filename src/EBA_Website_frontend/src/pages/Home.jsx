@@ -86,7 +86,7 @@ export default function Home() {
         <h2>Our Ecosystem Members</h2>
         <div className="logoGroup"> 
         <div title="MercX – Tokenized Investment Platform for Real-World Assets" className="ecosystemItem">
-          <img src="/assets/mercx_logo.jpeg" alt="MercX Logo" className="ecosystemLogo" />
+          <img src="/assets/mercx_logo.png" alt="MercX Logo" className="ecosystemLogo" />
           MercX
         </div>
           <div title="Bridge – Web3 Onboarding Platform for the Arab World">🌉 Bridge</div>
